@@ -144,3 +144,15 @@ clean:
 .PHONY: VERILOG_SOURCES
 VERILOG_SOURCES: 
 	@echo $(realpath $(RTL_SRCS))
+
+.PHONY: synth synth-%
+synth-%:
+	jq --arg module "$*" '.DESIGN_NAME = $$module' $(wildcard config.*) > tmp.json
+	@`which openlane` tmp.json --flow Classic -T yosys.synthesis
+	@cd runs && rm -f recent && ln -sf `ls | tail -n 1` recent
+	rm tmp.json
+
+
+.PHONY: show show-%
+show-%: 
+	netlistsvg ./runs/recent/final/json_h/$*.h.json -o $*.svg

@@ -1,5 +1,5 @@
 {
-    "DESIGN_NAME": "async_fifo",
+    "DESIGN_NAME": "synchronizer",
     "CLOCK_PORT": ["clk_r", "clk_w"],
     "VERILOG_FILES": "dir::/rtl/*v", 
     "PNR_SDC_FILE": "dir::constraints.sdc", # contains clock information

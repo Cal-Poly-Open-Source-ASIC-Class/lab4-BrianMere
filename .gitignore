@@ -6,3 +6,4 @@ runs/
 *obj_dir
 *sim_build
 *results.xml
+*.svg

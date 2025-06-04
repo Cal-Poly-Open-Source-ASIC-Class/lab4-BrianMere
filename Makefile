@@ -152,7 +152,13 @@ synth-%:
 	@cd runs && rm -f recent && ln -sf `ls | tail -n 1` recent
 	rm tmp.json
 
+.PHONY: synth
+synth: 
+	openlane $(OPENLANE_CONF) --flow Classic -T openroad.staprepnr 
 
-.PHONY: show show-%
+# These can be run on your own computer (not in the docker container) as long as netlistsvg and yosys are installed. 
+.PHONY: show-% show
 show-%: 
-	netlistsvg ./runs/recent/final/json_h/$*.h.json -o $*.svg
+	yosys -p "prep -top $*; write_json $*_temp.h.json" $(RTL_SRCS)
+	netlistsvg $*_temp.h.json -o $*.svg
+	rm $*_temp.h.json

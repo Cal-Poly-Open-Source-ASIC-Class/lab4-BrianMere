@@ -1,6 +1,6 @@
 {
-    "DESIGN_NAME": "synchronizer",
-    "CLOCK_PORT": ["clk_r", "clk_w"],
+    "DESIGN_NAME": "async_fifo",
+    "CLOCK_PORT": ["i_wclk", "i_rclk"],
     "VERILOG_FILES": "dir::/rtl/*v", 
     "PNR_SDC_FILE": "dir::constraints.sdc",
     "SIGNOFF_SDC_FILE": "dir::constraints.sdc",
